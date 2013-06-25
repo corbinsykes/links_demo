@@ -14,6 +14,10 @@ end
 #             'http://avclub.com']
 #   erb :links
 # end
+get '/about' do
+  "I'm me"
+end
+
 
 get '/links' do
   link_file = File.new('links.csv', 'r')
@@ -23,4 +27,11 @@ get '/links' do
   end
   link_file.close
   erb :links
+end
+
+post '/navigate' do
+  case params[:destination].downcase
+    when "links" then redirect to ("/links")
+    when "about" then redirect to ("/about")
+  end
 end
